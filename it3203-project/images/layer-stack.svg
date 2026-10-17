@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="Layer 2 networks batch transactions and post them to a Layer 1 blockchain">
+  <rect width="640" height="300" fill="#f4f6f8"/>
+  <rect x="40" y="30" width="560" height="70" rx="6" fill="#2f5d8a"/>
+  <text x="320" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#fff">Layer 2: rollups (Arbitrum, Base, zkSync)</text>
+  <rect x="40" y="190" width="560" height="70" rx="6" fill="#1f3a56"/>
+  <text x="320" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#fff">Layer 1: Ethereum (settlement and security)</text>
+  <line x1="240" y1="100" x2="240" y2="188" stroke="#555" stroke-width="3"/>
+  <polygon points="232,178 248,178 240,190" fill="#555"/>
+  <text x="252" y="150" font-family="Arial, sans-serif" font-size="14" fill="#333">batched data + proof</text>
+  <line x1="420" y1="188" x2="420" y2="102" stroke="#555" stroke-width="3"/>
+  <polygon points="412,112 428,112 420,100" fill="#555"/>
+  <text x="432" y="150" font-family="Arial, sans-serif" font-size="14" fill="#333">security inherited</text>
+</svg>
