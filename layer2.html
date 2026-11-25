@@ -17,6 +17,7 @@
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html" class="current">Layer 2</a>
       <a href="concepts.html">Key Concepts</a>
+      <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
       <a href="about.html">About</a>
     </nav>
@@ -44,6 +45,27 @@
         <tr><td>Withdrawals to Layer 1</td><td>Slower, because of the challenge window (about a week on many networks)</td><td>Faster, once the proof is verified</td></tr>
         <tr><td>Complexity</td><td>Simpler, closer to the original EVM</td><td>More complex math and tooling</td></tr>
         <tr><td>Examples</td><td>Arbitrum, OP Mainnet, Base</td><td>zkSync Era, Starknet, Scroll</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How a Rollup Transaction Flows</h2>
+    <ol>
+      <li>A user sends a transaction to the rollup instead of to Layer 1.</li>
+      <li>A sequencer puts the transactions in order and gives a quick confirmation.</li>
+      <li>The rollup bundles many transactions into one compressed batch.</li>
+      <li>The batch data is posted to Layer 1, so anyone can rebuild the rollup&rsquo;s state.</li>
+      <li>Layer 1 backs the result: an optimistic rollup allows fraud proofs, and a ZK rollup supplies a validity proof.</li>
+    </ol>
+
+    <h2>Layer 1 and Layer 2 Side by Side</h2>
+    <table>
+      <caption>General differences (details vary by network)</caption>
+      <thead><tr><th>Feature</th><th>Layer 1</th><th>Layer 2 rollup</th></tr></thead>
+      <tbody>
+        <tr><td>Security comes from</td><td>Its own validators</td><td>The Layer 1 it posts data to</td></tr>
+        <tr><td>Typical fees</td><td>Higher when busy</td><td>Lower, since costs are shared across a batch</td></tr>
+        <tr><td>Finality</td><td>Final once the Layer 1 confirms the block</td><td>Quick confirmation from the sequencer, final once the batch is secured on Layer 1</td></tr>
+        <tr><td>Main risks</td><td>Congestion and high fees</td><td>Bridges, sequencer control, and spread-out liquidity</td></tr>
       </tbody>
     </table>
 

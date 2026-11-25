@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz | Smart Contracts, Layer 1 and Layer 2</title>
+  <!-- The one and only stylesheet for the site -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Quiz logic. "defer" makes the script run after the page has loaded -->
+  <script src="js/quiz.js" defer></script>
+</head>
+<body>
+  <!-- Header and main menu: identical on every page for consistency -->
+  <header>
+    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <nav id="main-nav" aria-label="Main menu">
+      <a href="index.html">Home</a>
+      <a href="smart-contracts.html">Smart Contracts</a>
+      <a href="layer1.html">Layer 1</a>
+      <a href="layer2.html">Layer 2</a>
+      <a href="concepts.html">Key Concepts</a>
+      <a href="quiz.html" class="current">Quiz</a>
+      <a href="references.html">References</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Self-Assessment Quiz</h1>
+    <p>Test what you learned about smart contracts, Layer 1 blockchains, and Layer 2 rollups.
+    Read the topic pages first if you want a refresher.</p>
+
+    <!-- Start panel: shown first. The timer does not start until the button is pressed -->
+    <section id="quiz-intro" class="quiz-panel">
+      <h2>Before you start</h2>
+      <ul>
+        <li>10 questions: 3 fill in the blank, 5 multiple choice, and 2 select-all-that-apply</li>
+        <li>Each question is worth 1 point. Select-all questions need every correct choice and no wrong ones</li>
+        <li>You have 10 minutes. The quiz is graded automatically when time runs out</li>
+        <li>A score of 70% (7 of 10) or higher is a pass</li>
+      </ul>
+      <button type="button" id="start-btn" class="btn">Start quiz</button>
+      <noscript><p class="note">This quiz needs JavaScript. Please turn it on in your browser to take the quiz.</p></noscript>
+    </section>
+
+    <!-- Countdown: stays at the top of the screen while the quiz is running -->
+    <div id="timer-bar" class="timer-bar" hidden>
+      <span>Time left</span>
+      <span id="time-left" class="time-left">10:00</span>
+    </div>
+
+    <!-- Results panel: filled in by quiz.js right after the quiz is submitted -->
+    <section id="results" class="results" tabindex="-1" aria-live="polite" hidden>
+      <h2>Your Results</h2>
+      <p id="result-banner" class="result-banner"></p>
+      <dl class="result-stats">
+        <div><dt>Total score</dt><dd id="result-score"></dd></div>
+        <div><dt>Time spent</dt><dd id="result-time"></dd></div>
+      </dl>
+      <div class="score-bar"><div id="score-fill" class="score-fill"></div></div>
+      <p id="result-pass-note" class="note"></p>
+
+      <table>
+        <caption>Result for each question</caption>
+        <thead>
+          <tr><th>Question</th><th>Result</th><th>Score</th><th>Correct answer</th></tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+      <p class="note">Scroll down to see an explanation under each question.</p>
+      <button type="button" id="retake-btn" class="btn">Retake quiz</button>
+    </section>
+
+    <!-- The quiz form. quiz.js builds the questions inside #questions -->
+    <form id="quiz-form" hidden>
+      <div id="questions"></div>
+      <div class="form-actions">
+        <button type="submit" class="btn">Submit quiz</button>
+        <button type="button" id="reset-btn" class="btn btn-secondary">Reset quiz</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer: class project note with link to the class website -->
+  <footer>
+    <p>This website is a class project for IT 3203 Introduction to Web Development at Kennesaw State University.
+    Visit the <a href="https://ksuweb.github.io/IT3203/">IT 3203 class website</a>.</p>
+  </footer>
+</body>
+</html>

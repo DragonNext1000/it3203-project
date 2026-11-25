@@ -17,6 +17,7 @@
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
       <a href="concepts.html" class="current">Key Concepts</a>
+      <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
       <a href="about.html">About</a>
     </nav>
@@ -24,7 +25,7 @@
 
   <main>
     <h1>Key Concepts</h1>
-    <p>Seven ideas that make the rest of this site easier to follow.</p>
+    <p>Ten ideas that make the rest of this site easier to follow.</p>
 
     <div class="card-grid">
       <section class="card"><h3>Smart contract</h3><p>Code stored on a blockchain that runs automatically when called, with results every node can verify.</p></section>
@@ -34,6 +35,9 @@
       <section class="card"><h3>Rollup</h3><p>A Layer 2 that executes transactions off-chain and posts the data to Layer 1 so the base chain can verify the results.</p></section>
       <section class="card"><h3>Fraud proof and validity proof</h3><p>Optimistic rollups use fraud proofs to challenge bad batches. ZK rollups use validity proofs to show batches are correct.</p></section>
       <section class="card"><h3>Bridge</h3><p>A tool that moves assets between chains or layers. Bridges are convenient but have been common targets for attacks.</p></section>
+      <section class="card"><h3>Sequencer</h3><p>The service on a rollup that orders transactions and bundles them into batches. Many rollups still use a single sequencer.</p></section>
+      <section class="card"><h3>Oracle</h3><p>A service that brings outside data, such as a price, onto the blockchain so contracts can use it.</p></section>
+      <section class="card"><h3>Data availability</h3><p>Making sure the data behind a batch is published, so anyone can check the results. Rollups post this data to Layer 1.</p></section>
     </div>
   </main>
 

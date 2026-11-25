@@ -17,6 +17,7 @@
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
       <a href="concepts.html">Key Concepts</a>
+      <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
       <a href="about.html">About</a>
     </nav>
@@ -57,6 +58,18 @@
         <tr><td>Same behavior for every user</td><td>Contracts cannot read outside data without an oracle</td></tr>
       </tbody>
     </table>
+
+    <h2>Security: Common Problems</h2>
+    <p>Contract code often controls real money and cannot be quietly patched, so mistakes can be expensive.
+    Developers watch for a few well-known problems:</p>
+    <ul>
+      <li><strong>Reentrancy:</strong> a contract sends funds before updating its own records, so a malicious
+      contract calls back in and withdraws again. This type of bug was behind the 2016 DAO attack.</li>
+      <li><strong>Access control mistakes:</strong> a sensitive function that anyone can call instead of only the owner.</li>
+      <li><strong>Arithmetic errors:</strong> numbers that wrap around. Solidity 0.8 and later checks for this by default.</li>
+      <li><strong>Oracle manipulation:</strong> a contract trusts an outside price feed that an attacker can influence.</li>
+    </ul>
+    <p>Common defenses are code audits, well-tested libraries such as OpenZeppelin, and running tests before deployment.</p>
 
     <h2>A Tiny Example</h2>
     <p>This simplified Solidity contract stores a number that anyone can read and update.</p>

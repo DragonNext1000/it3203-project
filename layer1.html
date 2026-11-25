@@ -17,6 +17,7 @@
       <a href="layer1.html" class="current">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
       <a href="concepts.html">Key Concepts</a>
+      <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
       <a href="about.html">About</a>
     </nav>
@@ -48,6 +49,20 @@
         <tr><td>Bitcoin</td><td>Proof of work</td><td>Limited scripting</td><td>Stays simple; Lightning Network adds a Layer 2</td></tr>
         <tr><td>Ethereum</td><td>Proof of stake (since The Merge, 2022)</td><td>Yes (Solidity, EVM)</td><td>Rollup-centric: scale through Layer 2 networks</td></tr>
         <tr><td>Solana</td><td>Proof of stake with Proof of History</td><td>Yes (Rust programs)</td><td>Scale on Layer 1 with fast blocks and high hardware demands</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How Layer 1 Networks Reach Consensus</h2>
+    <p>Nodes must agree on which transactions are valid and in what order. The two best-known methods are
+    proof of work and proof of stake.</p>
+    <table>
+      <caption>Proof of work compared with proof of stake</caption>
+      <thead><tr><th>Feature</th><th>Proof of work</th><th>Proof of stake</th></tr></thead>
+      <tbody>
+        <tr><td>Who adds blocks</td><td>Miners who solve a hard computing puzzle</td><td>Validators who lock up (stake) coins</td></tr>
+        <tr><td>What secures the network</td><td>The cost of computing power and electricity</td><td>The value of staked coins, which can be taken away (slashed) for cheating</td></tr>
+        <tr><td>Energy use</td><td>High</td><td>Much lower. Ethereum reported a drop of more than 99% after The Merge</td></tr>
+        <tr><td>Example</td><td>Bitcoin</td><td>Ethereum</td></tr>
       </tbody>
     </table>
 
