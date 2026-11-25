@@ -6,18 +6,25 @@
   <title>Quiz | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
-  <!-- Quiz logic. "defer" makes the script run after the page has loaded -->
-  <script src="js/quiz.js" defer></script>
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html">Smart Contracts</a>
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html">Key Concepts</a>
       <a href="quiz.html" class="current">Quiz</a>
       <a href="references.html">References</a>
@@ -49,7 +56,7 @@
       <span id="time-left" class="time-left">10:00</span>
     </div>
 
-    <!-- Results panel: filled in by quiz.js right after the quiz is submitted -->
+    <!-- Results panel: filled in by main.js right after the quiz is submitted -->
     <section id="results" class="results" tabindex="-1" aria-live="polite" hidden>
       <h2>Your Results</h2>
       <p id="result-banner" class="result-banner"></p>
@@ -60,18 +67,20 @@
       <div class="score-bar"><div id="score-fill" class="score-fill"></div></div>
       <p id="result-pass-note" class="note"></p>
 
-      <table>
+      <div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
         <caption>Result for each question</caption>
         <thead>
           <tr><th>Question</th><th>Result</th><th>Score</th><th>Correct answer</th></tr>
         </thead>
         <tbody id="results-body"></tbody>
       </table>
+    </div>
       <p class="note">Scroll down to see an explanation under each question.</p>
       <button type="button" id="retake-btn" class="btn">Retake quiz</button>
     </section>
 
-    <!-- The quiz form. quiz.js builds the questions inside #questions -->
+    <!-- The quiz form. main.js builds the questions inside #questions -->
     <form id="quiz-form" hidden>
       <div id="questions"></div>
       <div class="form-actions">

@@ -6,16 +6,25 @@
   <title>About | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html">Smart Contracts</a>
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html">Key Concepts</a>
       <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
@@ -29,7 +38,8 @@
     <h2>About the Author</h2>
     <p>My name is Eric Camacho. I am an Information Technology student at Kennesaw State University with a
     concentration in Data Analytics, planning to graduate in Spring 2028.</p>
-    <table>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
       <caption>Mini resume</caption>
       <thead><tr><th>Area</th><th>Details</th></tr></thead>
       <tbody>
@@ -40,16 +50,18 @@
         <tr><td>Interests</td><td>Data analytics, networking, web development, blockchain technology</td></tr>
       </tbody>
     </table>
+    </div>
     <p>GitHub: <a href="https://github.com/DragonNext1000">DragonNext1000</a></p>
 
     <h2>About This Project</h2>
     <p>This site is the project for IT 3203 Introduction to Web Development. It presents research on
     smart contracts and Layer 1 and Layer 2 blockchains. Milestone #1 built the pages with HTML and CSS.
-    Milestone #2 added a JavaScript quiz and more content. Milestone #3 will make the site responsive, and the
-    research will keep growing.</p>
+    Milestone #2 added a JavaScript quiz and more content. Milestone #3 made the site responsive for phones, tablets, and
+    desktops, and finished the research with two new pages (Roadmap and Security).</p>
     <ul>
       <li>Built with hand-written HTML, CSS, and JavaScript, with no frameworks or templates</li>
-      <li>One CSS file and one JavaScript file (the quiz)</li>
+      <li>One CSS file and one JavaScript file (the menu button and the quiz)</li>
+      <li>Mobile-first design with media queries at 600px and 960px, tested on desktop, tablet, and phone</li>
       <li>Hosted on GitHub Pages</li>
       <li>Class website: <a href="https://ksuweb.github.io/IT3203/">IT 3203</a></li>
     </ul>

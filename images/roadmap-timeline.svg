@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Timeline of Ethereum upgrades: Dencun in March 2024 added blobs, Pectra in May 2025 raised blob limits, Fusaka in December 2025 added PeerDAS, and Glamsterdam is planned with no mainnet date set">
+  <rect width="640" height="400" fill="#f4f6f8"/>
+  <line x1="60" y1="50" x2="60" y2="350" stroke="#9fb1c3" stroke-width="6"/>
+  <g font-family="Arial, sans-serif">
+    <circle cx="60" cy="50" r="16" fill="#2f5d8a"/>
+    <text x="100" y="48" font-size="26" font-weight="bold" fill="#1f3a56">Dencun, March 2024</text>
+    <text x="100" y="78" font-size="22" fill="#222">Blobs: cheaper data for rollups</text>
+    <circle cx="60" cy="150" r="16" fill="#2f5d8a"/>
+    <text x="100" y="148" font-size="26" font-weight="bold" fill="#1f3a56">Pectra, May 2025</text>
+    <text x="100" y="178" font-size="22" fill="#222">Blob target doubled to 6</text>
+    <circle cx="60" cy="250" r="16" fill="#2f5d8a"/>
+    <text x="100" y="248" font-size="26" font-weight="bold" fill="#1f3a56">Fusaka, December 2025</text>
+    <text x="100" y="278" font-size="22" fill="#222">PeerDAS: nodes sample the data</text>
+    <circle cx="60" cy="350" r="16" fill="#f4f6f8" stroke="#b3541e" stroke-width="5"/>
+    <text x="100" y="348" font-size="26" font-weight="bold" fill="#b3541e">Glamsterdam, planned</text>
+    <text x="100" y="378" font-size="22" fill="#222">No mainnet date set yet</text>
+  </g>
+</svg>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security and Risks | Smart Contracts, Layer 1 and Layer 2</title>
+  <!-- The one and only stylesheet for the site -->
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Header and main menu: identical on every page for consistency -->
+  <header>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <a href="index.html">Home</a>
+      <a href="smart-contracts.html">Smart Contracts</a>
+      <a href="layer1.html">Layer 1</a>
+      <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html" class="current">Security</a>
+      <a href="concepts.html">Key Concepts</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="references.html">References</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Security and Risks</h1>
+    <p>Smart contracts hold real money and cannot be edited easily after they are deployed, so mistakes are costly.
+    This page covers a famous bug, real hacks, and the extra risks that come with Layer 2 networks and bridges.</p>
+
+    <h2>The DAO Hack (2016)</h2>
+    <p>The DAO was an early Ethereum investment fund. An attacker used a bug called <strong>reentrancy</strong> to
+    drain about 3.6 million ETH. The contract sent money out <em>before</em> it updated the balance, so the attacker&rsquo;s
+    code called back in and withdrew again and again. The community later chose to change the chain (a hard fork),
+    which created Ethereum and Ethereum Classic.</p>
+
+    <h3>Unsafe version (sends money first)</h3>
+<pre><code>function withdraw() public {
+    uint amount = balances[msg.sender];
+    msg.sender.call{value: amount}("");  // attacker can call back in here
+    balances[msg.sender] = 0;            // too late
+}</code></pre>
+
+    <h3>Safer version (checks, updates, then sends)</h3>
+<pre><code>function withdraw() public {
+    uint amount = balances[msg.sender];
+    require(amount &gt; 0);
+    balances[msg.sender] = 0;            // update first
+    msg.sender.call{value: amount}("");  // send last
+}</code></pre>
+    <p>This pattern is called <em>checks-effects-interactions</em>.</p>
+
+    <h2>Large Hacks in 2022</h2>
+<div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
+      <caption>Examples of major 2022 incidents (amounts are approximate)</caption>
+      <thead><tr><th>Incident</th><th>What happened</th><th>Lesson</th></tr></thead>
+      <tbody>
+        <tr><td>Wormhole</td><td>A bridge bug let an attacker mint about $320 million of tokens</td><td>Bridges are a big target</td></tr>
+        <tr><td>Ronin</td><td>Attackers took control of validator keys, about $600 million lost</td><td>Few signers means few keys to steal</td></tr>
+        <tr><td>Beanstalk</td><td>A governance vote was bought with a flash loan, about $180 million lost</td><td>Voting rules can be attacked</td></tr>
+        <tr><td>Nomad</td><td>A setup mistake let anyone copy a withdrawal, about $190 million lost</td><td>One small bug can be copied by many people</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Bridge Risks</h2>
+    <p>A bridge locks your coins on one chain and gives you a copy on another. If the locked funds are stolen, the
+    copies become worthless.</p>
+    <img src="images/bridge-flow.svg" width="640" height="220" loading="lazy" alt="Bridge flow: coins on Chain A are locked in a bridge, and a copy is issued on Chain B; attackers target the locked funds">
+
+    <h2>Who Do You Have to Trust?</h2>
+<div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
+      <caption>Trust assumptions (general, details vary by network)</caption>
+      <thead><tr><th>Option</th><th>You trust</th><th>Main risk</th></tr></thead>
+      <tbody>
+        <tr><td>Layer 1 directly</td><td>The Layer 1 validators</td><td>High fees</td></tr>
+        <tr><td>Rollup</td><td>Layer 1, plus the rollup&rsquo;s code and upgrade keys</td><td>Bugs or admin keys</td></tr>
+        <tr><td>Sidechain</td><td>Its own validators</td><td>Weaker security than Layer 1</td></tr>
+        <tr><td>Bridge</td><td>The bridge&rsquo;s code and signers</td><td>Theft of locked funds</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Training Wheels on Rollups</h2>
+    <p>Many rollups launched with &ldquo;training wheels,&rdquo; meaning a small group can step in to fix problems.
+    That is safer early on, but it also means users trust that group. Over time, networks are removing these
+    limits. For example, OP Mainnet added fault proofs in June 2024, and Arbitrum released BoLD in February 2025 for
+    permissionless validation. The site L2BEAT groups rollups into stages to show how far along each one is.</p>
+
+    <h2>Practical Safety Checklist</h2>
+    <ul>
+      <li>Use well-known bridges and apps that have been audited, and start with a small test amount.</li>
+      <li>Check the website address carefully before connecting a wallet.</li>
+      <li>Read what a wallet asks you to sign. Do not approve things you do not understand.</li>
+      <li>Never share your seed phrase.</li>
+      <li>Never trust anyone who asks you to &ldquo;upgrade&rdquo; your ETH.</li>
+    </ul>
+
+    <h2>Takeaways</h2>
+    <ul>
+      <li>Code is law only if the code is correct, so testing and audits matter.</li>
+      <li>Every extra layer or bridge adds something else to trust.</li>
+      <li>Layer 2 is cheaper, but you should know how each network is secured.</li>
+    </ul>
+    <p class="note">See also: <a href="layer2.html">Layer 2</a>, <a href="roadmap.html">Roadmap</a>, <a href="references.html">References</a>.</p>
+
+  </main>
+
+  <!-- Footer: class project note with link to the class website -->
+  <footer>
+    <p>This website is a class project for IT 3203 Introduction to Web Development at Kennesaw State University.
+    Visit the <a href="https://ksuweb.github.io/IT3203/">IT 3203 class website</a>.</p>
+  </footer>
+</body>
+</html>

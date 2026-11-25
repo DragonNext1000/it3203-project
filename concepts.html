@@ -6,16 +6,25 @@
   <title>Key Concepts | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html">Smart Contracts</a>
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html" class="current">Key Concepts</a>
       <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
@@ -25,7 +34,7 @@
 
   <main>
     <h1>Key Concepts</h1>
-    <p>Ten ideas that make the rest of this site easier to follow.</p>
+    <p>Twelve ideas that make the rest of this site easier to follow.</p>
 
     <div class="card-grid">
       <section class="card"><h3>Smart contract</h3><p>Code stored on a blockchain that runs automatically when called, with results every node can verify.</p></section>
@@ -38,6 +47,8 @@
       <section class="card"><h3>Sequencer</h3><p>The service on a rollup that orders transactions and bundles them into batches. Many rollups still use a single sequencer.</p></section>
       <section class="card"><h3>Oracle</h3><p>A service that brings outside data, such as a price, onto the blockchain so contracts can use it.</p></section>
       <section class="card"><h3>Data availability</h3><p>Making sure the data behind a batch is published, so anyone can check the results. Rollups post this data to Layer 1.</p></section>
+      <section class="card"><h3>Finality</h3><p>The point when a transaction can no longer be reversed. On Ethereum this takes about 15 minutes.</p></section>
+      <section class="card"><h3>Blob</h3><p>A large, temporary chunk of data attached to a block. Rollups use blobs because they cost less than normal transaction data.</p></section>
     </div>
   </main>
 

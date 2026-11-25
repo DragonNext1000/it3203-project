@@ -6,16 +6,25 @@
   <title>Layer 2 | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html">Smart Contracts</a>
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html" class="current">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html">Key Concepts</a>
       <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
@@ -29,7 +38,7 @@
     chain, then posts compressed data back to the Layer 1. Users get lower fees and faster confirmations, and the
     Layer 1 still acts as the final judge.</p>
 
-    <img src="images/layer-stack.svg" alt="Diagram showing Layer 2 networks sending batched data and proofs down to a Layer 1 blockchain, which provides security back up to Layer 2">
+    <img src="images/layer-stack.svg" width="640" height="320" alt="Diagram showing Layer 2 networks sending batched data and proofs down to a Layer 1 blockchain, which provides security back up to Layer 2">
 
     <h2>Rollups</h2>
     <p>Rollups are the main Layer 2 design on Ethereum. They execute many transactions, bundle them into a batch,
@@ -37,7 +46,8 @@
     (EIP-4844), a cheaper way for rollups to post data, which lowered Layer 2 fees.</p>
 
     <h2>Optimistic vs. Zero-Knowledge Rollups</h2>
-    <table>
+    <div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
       <caption>The two main rollup types</caption>
       <thead><tr><th>Feature</th><th>Optimistic rollup</th><th>ZK rollup</th></tr></thead>
       <tbody>
@@ -47,6 +57,7 @@
         <tr><td>Examples</td><td>Arbitrum, OP Mainnet, Base</td><td>zkSync Era, Starknet, Scroll</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>How a Rollup Transaction Flows</h2>
     <ol>
@@ -58,7 +69,8 @@
     </ol>
 
     <h2>Layer 1 and Layer 2 Side by Side</h2>
-    <table>
+    <div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
       <caption>General differences (details vary by network)</caption>
       <thead><tr><th>Feature</th><th>Layer 1</th><th>Layer 2 rollup</th></tr></thead>
       <tbody>
@@ -68,12 +80,31 @@
         <tr><td>Main risks</td><td>Congestion and high fees</td><td>Bridges, sequencer control, and spread-out liquidity</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Other Layer 2 Approaches</h2>
     <ul>
       <li><strong>State channels:</strong> Bitcoin&rsquo;s Lightning Network lets two parties transact off-chain and settle on-chain later.</li>
       <li><strong>Sidechains:</strong> networks such as Polygon PoS run their own validators, so they do not inherit full Layer 1 security. Many people treat them as a separate category from rollups.</li>
     </ul>
+
+    <h2>Withdrawals and Exits</h2>
+    <p>Moving money from a Layer 2 back to Layer 1 is called a withdrawal. On optimistic rollups it takes about a week
+    because of the challenge window. Many users skip the wait by using a third-party bridge that pays them early for a
+    small fee, but that adds trust in the bridge. ZK rollups can finish sooner once the proof is checked.</p>
+
+    <h2>Recent Progress</h2>
+    <ul>
+      <li>Dencun (March 2024) added blobs, which cut rollup fees.</li>
+      <li>OP Mainnet launched fault proofs in June 2024, so anyone can challenge a bad result.</li>
+      <li>Arbitrum released BoLD in February 2025, which allows permissionless validation.</li>
+    </ul>
+
+    <h2>Fees and Blobs</h2>
+    <p>A rollup&rsquo;s biggest cost is posting its data to Layer 1. Blobs are cheaper than normal transaction data,
+    and the number of blobs per block has grown with later upgrades. More blob space means lower fees for
+    users. Read more on the <a href="roadmap.html">Roadmap</a> page, and about bridge and sequencer risks on the
+    <a href="security.html">Security and Risks</a> page.</p>
 
     <h2>Tradeoffs to Know</h2>
     <ul>

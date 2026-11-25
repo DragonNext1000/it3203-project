@@ -1,10 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" role="img" aria-label="Flow: user sends transaction, network runs contract code, state is updated">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" role="img" aria-label="Flow: a user sends a transaction, nodes run the contract code, and the shared state updates">
   <rect width="640" height="200" fill="#f4f6f8"/>
-  <g font-family="Arial, sans-serif" font-size="16" fill="#fff" text-anchor="middle">
-    <rect x="20" y="65" width="160" height="70" rx="6" fill="#2f5d8a"/><text x="100" y="105">User sends transaction</text>
-    <rect x="240" y="65" width="160" height="70" rx="6" fill="#1f3a56"/><text x="320" y="105">Nodes run the code</text>
-    <rect x="460" y="65" width="160" height="70" rx="6" fill="#2f5d8a"/><text x="540" y="105">Shared state updates</text>
+  <g font-family="Arial, sans-serif" font-size="23" fill="#fff" text-anchor="middle">
+    <rect x="15" y="50" width="170" height="100" rx="8" fill="#2f5d8a"/>
+    <text x="100" y="92">User sends</text><text x="100" y="122">transaction</text>
+    <rect x="235" y="50" width="170" height="100" rx="8" fill="#1f3a56"/>
+    <text x="320" y="92">Nodes run</text><text x="320" y="122">the code</text>
+    <rect x="455" y="50" width="170" height="100" rx="8" fill="#2f5d8a"/>
+    <text x="540" y="92">Shared state</text><text x="540" y="122">updates</text>
   </g>
-  <g stroke="#555" stroke-width="3"><line x1="182" y1="100" x2="236" y2="100"/><line x1="402" y1="100" x2="456" y2="100"/></g>
-  <polygon points="236,92 236,108 248,100" fill="#555"/><polygon points="456,92 456,108 468,100" fill="#555"/>
+  <g stroke="#555" stroke-width="4"><line x1="188" y1="100" x2="222" y2="100"/><line x1="408" y1="100" x2="442" y2="100"/></g>
+  <polygon points="220,90 220,110 236,100" fill="#555"/><polygon points="440,90 440,110 456,100" fill="#555"/>
 </svg>

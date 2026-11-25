@@ -6,16 +6,25 @@
   <title>References | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html">Smart Contracts</a>
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html">Key Concepts</a>
       <a href="quiz.html">Quiz</a>
       <a href="references.html" class="current">References</a>
@@ -25,19 +34,41 @@
 
   <main>
     <h1>References and Resources</h1>
+    <p class="note">Last checked November 25, 2026. Dates and dollar amounts on this site are approximate, and upgrade plans may change.</p>
 
-    <h2>References</h2>
+    <h2>Core Documentation</h2>
     <ul>
-      <li>Ethereum Foundation. <a href="https://ethereum.org/en/developers/docs/smart-contracts/">Introduction to smart contracts</a>. ethereum.org.</li>
-      <li>Ethereum Foundation. <a href="https://ethereum.org/en/layer-2/">Layer 2</a>. ethereum.org.</li>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/en/developers/docs/smart-contracts/">Introduction to smart contracts</a>. ethereum.org. Basics used on the Smart Contracts page.</li>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/en/layer-2/">Layer 2</a>. ethereum.org. Overview used on the Layer 2 page.</li>
       <li>Ethereum Foundation. <a href="https://ethereum.org/en/developers/docs/scaling/">Scaling</a>. ethereum.org.</li>
       <li>Ethereum Foundation. <a href="https://ethereum.org/developers/docs/scaling/optimistic-rollups/">Optimistic rollups</a>. ethereum.org.</li>
       <li>Ethereum Foundation. <a href="https://ethereum.org/developers/docs/scaling/zk-rollups/">Zero-knowledge rollups</a>. ethereum.org.</li>
       <li>Ethereum Foundation. <a href="https://ethereum.org/developers/docs/consensus-mechanisms/pos/">Proof-of-stake (PoS)</a>. ethereum.org.</li>
-      <li>Ethereum Foundation. <a href="https://ethereum.org/developers/docs/smart-contracts/security/">Smart contract security</a>. ethereum.org.</li>
       <li>Ethereum Improvement Proposals. <a href="https://eips.ethereum.org/EIPS/eip-4844">EIP-4844: Shard Blob Transactions</a>.</li>
       <li>Nakamoto, S. <a href="https://bitcoin.org/bitcoin.pdf">Bitcoin: A Peer-to-Peer Electronic Cash System</a>. 2008.</li>
       <li>Solana Foundation. <a href="https://solana.com/docs">Solana documentation</a>.</li>
+    </ul>
+
+    <h2>Roadmap and Upgrades</h2>
+    <ul>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/roadmap/fusaka/">Fusaka</a>. ethereum.org.</li>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/roadmap/pectra/">Pectra</a>. ethereum.org.</li>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/roadmap/glamsterdam/">Glamsterdam</a>. ethereum.org.</li>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/roadmap/single-slot-finality/">Single slot finality</a>. ethereum.org.</li>
+      <li>Ethereum Foundation Blog. <a href="https://blog.ethereum.org/2026/02/18/protocol-priorities-update-2026">Protocol priorities update for 2026</a>.</li>
+      <li>Ethereum Foundation Blog. <a href="https://blog.ethereum.org/2026/10/16/glamsterdam-hoodi-announcement">Glamsterdam Hoodi announcement</a>.</li>
+      <li>CoinMarketCap Academy. <a href="https://coinmarketcap.com/academy/article/ethereum-glamsterdam-upgrade-delay-may-2027">Glamsterdam upgrade delay</a>. News report on the schedule.</li>
+      <li>Coinotag. <a href="https://en.coinotag.com/ethereum-glamsterdam-mainnet-delayed-mid-january-2027">Glamsterdam mainnet delayed</a>. News report on the schedule.</li>
+    </ul>
+
+    <h2>Security and Risks</h2>
+    <ul>
+      <li>Ethereum Foundation. <a href="https://ethereum.org/developers/docs/smart-contracts/security/">Smart contract security</a>. ethereum.org.</li>
+      <li>BeInCrypto. <a href="https://beincrypto.com/learn/dao-hack-explained/">The DAO hack explained</a>.</li>
+      <li>Fortune. <a href="https://fortune.com/2022/12/30/5-biggest-crypto-hacks-2022/">The 5 biggest crypto hacks of 2022</a>.</li>
+      <li>The Block. <a href="https://www.theblock.co/post/299202/op-mainnet-fault-proofs">OP Mainnet fault proofs</a>.</li>
+      <li>The Block. <a href="https://www.theblock.co/amp/post/340278/offchain-labs-releases-arbitrum-bold-on-mainnet-for-permissionless-validation">Arbitrum BoLD on mainnet</a>.</li>
+      <li>L2BEAT. <a href="https://l2beat.com/stages">Rollup stages</a>.</li>
     </ul>
 
     <h2>Learning Resources</h2>
@@ -49,8 +80,7 @@
       <li><a href="https://consensysdiligence.github.io/smart-contract-best-practices/">Smart Contract Best Practices</a>: a security guide from ConsenSys Diligence, covering the problems on the Smart Contracts page</li>
       <li><a href="https://l2beat.com/">L2BEAT</a>: tracks Layer 2 networks, their risks, and value secured</li>
     </ul>
-    <p class="note">Links last checked during development of Milestone #1.</p>
-  </main>
+      </main>
 
   <!-- Footer: class project note with link to the class website -->
   <footer>

@@ -1,8 +1,15 @@
 /* ==========================================================
-   IT 3203 Milestone #2 - single stylesheet for the whole site
+   IT 3203 Milestone #3 - single stylesheet for the whole site
    Theme: simple, clean business style (navy + light gray)
+
+   MOBILE-FIRST: the base styles below are for phones. Two media
+   queries then add changes as the screen gets wider:
+     @media (min-width: 600px)  -> tablets
+     @media (min-width: 960px)  -> laptops and desktops
+
    Sections: 1 Variables | 2 Base elements | 3 Header and menu
-             4 Page content | 5 Tables and code | 6 Quiz | 7 Footer
+             4 Page content | 5 Tables and code | 6 Quiz
+             7 Footer | 8 Tablet (600px) | 9 Desktop (960px)
    ========================================================== */
 
 /* ----- 1. Variables: colors are defined once and reused everywhere ----- */
@@ -21,16 +28,19 @@
   --green-bg: #e6f4ec;
   --red: #b42318;
   --red-bg: #fdecea;
+  --touch: 2.75rem;   /* minimum height of anything you tap (44px) */
 }
 
 /* A rule so the HTML "hidden" attribute always wins over other display rules */
 [hidden] { display: none !important; }
 
 /* ----- 2. Base elements (selector type 1: ELEMENT selectors) ----- */
+html { -webkit-text-size-adjust: 100%; }   /* stops phones from resizing text on rotate */
+
 body {
   font-family: Georgia, "Times New Roman", serif; /* font settings */
-  font-size: 18px;
-  line-height: 1.65;
+  font-size: 1.0625rem;      /* 17px on phones; rem units respect the user's font setting */
+  line-height: 1.6;
   color: var(--text);
   background-color: var(--page-bg);
   margin: 0;
@@ -42,79 +52,121 @@ h1, h2, h3 {
   line-height: 1.25;
 }
 
-h1 { font-size: 2.2rem; margin-top: 0; }
-h2 { font-size: 1.5rem; margin-top: 2rem; border-bottom: 2px solid var(--line); padding-bottom: 0.3rem; }
+/* clamp() makes the heading grow smoothly with the screen between a min and a max size */
+h1 { font-size: clamp(1.65rem, 6vw, 2.2rem); margin-top: 0; }
+h2 { font-size: clamp(1.3rem, 4.5vw, 1.5rem); margin-top: 2rem; border-bottom: 2px solid var(--line); padding-bottom: 0.3rem; }
 
 a { color: var(--blue); }
 a:hover { color: var(--hover); text-decoration: none; } /* hover effect on links */
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
+/* Flexible images: never wider than the screen, height keeps the right shape */
 img { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; }
 
-/* ----- 3. Header and main menu (flexbox layout) ----- */
+/* ----- 3. Header and main menu ----- */
 header {
   background-color: var(--navy);
   color: #fff;
-  padding: 1.2rem 2rem 0;
+  padding: 0.75rem 1rem 0;
 }
 
-header p { margin: 0 0 0.8rem; font-family: "Segoe UI", Arial, sans-serif; font-size: 1.1rem; font-weight: bold; }
+.header-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.site-title { margin: 0 0 0.75rem; font-family: "Segoe UI", Arial, sans-serif; font-size: 1.05rem; font-weight: bold; }
 
-/* Selector type 2: ID selector */
+/* The Menu button only shows on small screens, and only when JavaScript is on */
+.nav-toggle {
+  display: none;
+  min-height: var(--touch);
+  min-width: 5rem;
+  margin-bottom: 0.75rem;
+  padding: 0 1rem;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.nav-toggle:hover { background-color: var(--blue); }
+.nav-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.js .nav-toggle { display: block; }
+
+/* Selector type 2: ID selector. FLEXBOX: on phones the menu is one tall column */
 #main-nav {
-  display: flex;          /* FLEXBOX: lays the menu out in one row */
-  flex-wrap: wrap;
-  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0 -1rem;           /* lets the links reach the screen edges */
 }
+.js #main-nav:not(.is-open) { display: none; }   /* hidden until the Menu button is pressed */
 
 /* Selector type 3: DESCENDANT + PSEUDO-CLASS selectors */
 #main-nav a {
+  display: flex;
+  align-items: center;
+  min-height: var(--touch);  /* big enough to tap with a thumb */
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
   color: #fff;
   text-decoration: none;
-  padding: 0.6rem 1rem;
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 0.95rem;
-  border-bottom: 4px solid transparent;
+  font-size: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 5px solid transparent;
 }
-
-#main-nav a:hover { background-color: var(--blue); border-bottom-color: var(--accent); }
-#main-nav a.current { border-bottom-color: var(--accent); font-weight: bold; } /* marks the page you are on */
+#main-nav a:hover { background-color: var(--blue); }
+#main-nav a.current { border-left-color: var(--accent); font-weight: bold; background-color: rgba(255, 255, 255, 0.08); }
+#main-nav a:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
 
 /* ----- 4. Page content ----- */
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 2rem 2.5rem;
+  padding: 1.25rem 1rem 1.5rem;
   background-color: var(--panel-bg);
-  border: 1px solid var(--line);
+  overflow-wrap: anywhere;   /* long web addresses wrap instead of pushing the page wider */
 }
 
 /* Selector type 4: CLASS selectors */
-.abstract { background-color: var(--soft-bg); border-left: 5px solid var(--blue); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+.abstract { background-color: var(--soft-bg); border-left: 5px solid var(--blue); padding: 0.5rem 1rem 0.75rem; margin: 1.25rem 0; }
+.abstract h2 { margin-top: 0.5rem; border-bottom: none; }
 
 .key-terms span { display: inline-block; background-color: #e5ebf1; border: 1px solid var(--line); border-radius: 4px; padding: 0.15rem 0.6rem; margin: 0.2rem 0.2rem 0.2rem 0; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.9rem; }
 
-/* CSS GRID: key concept cards sit in a responsive grid */
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
-.card { background-color: var(--page-bg); border: 1px solid var(--line); border-top: 4px solid var(--blue); padding: 1rem 1.25rem; }
+/* CSS GRID: concept cards. One column on phones, more columns as space allows.
+   min(250px, 100%) stops a card from ever being wider than a tiny screen */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.card { background-color: var(--page-bg); border: 1px solid var(--line); border-top: 4px solid var(--blue); padding: 0.75rem 1rem; }
 .card h3 { margin-top: 0; font-size: 1.15rem; }
 
 .note { font-size: 0.9rem; color: var(--muted); }
+.status-note { background-color: #fff8e6; border-left: 5px solid var(--accent); padding: 0.5rem 1rem; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.95rem; }
 
 /* ----- 5. Tables and code ----- */
-table { border-collapse: collapse; width: 100%; margin: 1.25rem 0; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.95rem; }
-th, td { border: 1px solid var(--line); padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; }
+
+/* The wrapper scrolls sideways on its own, so a wide table never breaks the page layout */
+.table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+.table-wrap:focus-visible { outline: 3px solid var(--accent); }
+.table-wrap.scrolls::before { content: "Swipe sideways to see the whole table"; display: block; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.8rem; color: var(--muted); }
+.table-wrap table { margin: 0.25rem 0 0; }
+.table-wrap.scrolls table { min-width: 34rem; }   /* keeps columns readable; the wrapper scrolls */
+
+table { border-collapse: collapse; width: 100%; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.9rem; }
+th, td { border: 1px solid var(--line); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; overflow-wrap: normal; }
 th { background-color: var(--navy); color: #fff; }
 tr:nth-child(even) td { background-color: var(--page-bg); }
 caption { caption-side: bottom; font-size: 0.85rem; color: var(--muted); padding-top: 0.4rem; text-align: left; }
 
 code { background-color: var(--soft-bg); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.9em; }
-pre { background-color: var(--navy); color: var(--page-bg); padding: 1rem; overflow-x: auto; border-radius: 6px; font-size: 0.85rem; line-height: 1.5; }
+pre { background-color: var(--navy); color: var(--page-bg); padding: 1rem; overflow-x: auto; border-radius: 6px; font-size: 0.8rem; line-height: 1.5; }
 pre code { background: none; padding: 0; }
 
 /* ----- 6. Quiz page ----- */
 
-/* Buttons (shared by Start, Submit, Reset, Retake) */
+/* Buttons (Start, Submit, Reset, Retake): full width and tall on phones */
 .btn {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 1rem;
   font-weight: bold;
@@ -131,7 +183,7 @@ pre code { background: none; padding: 0; }
 .btn-secondary { color: var(--navy); background-color: var(--panel-bg); }
 .btn-secondary:hover { color: #fff; }
 
-.quiz-panel { background-color: var(--soft-bg); border: 1px solid var(--line); border-left: 5px solid var(--blue); padding: 0.5rem 1.5rem 1.5rem; margin: 1.5rem 0; }
+.quiz-panel { background-color: var(--soft-bg); border: 1px solid var(--line); border-left: 5px solid var(--blue); padding: 0.25rem 1rem 1.25rem; margin: 1.25rem 0; }
 .quiz-panel h2 { margin-top: 1rem; border-bottom: none; }
 
 /* Countdown bar: sticks to the top of the window while the quiz runs */
@@ -143,45 +195,45 @@ pre code { background: none; padding: 0; }
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   background-color: var(--navy);
   color: #fff;
   border-radius: 4px;
   font-family: "Segoe UI", Arial, sans-serif;
 }
-.time-left { font-size: 1.5rem; font-weight: bold; font-variant-numeric: tabular-nums; }
+.time-left { font-size: 1.4rem; font-weight: bold; font-variant-numeric: tabular-nums; }
 .timer-bar.timer-low { background-color: var(--red); }   /* last minute turns red */
 
-/* Question boxes */
-.question { border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 4px; padding: 0.75rem 1.25rem 1rem; margin: 0 0 1.25rem; }
+/* Question boxes. min-width: 0 lets a fieldset shrink on narrow screens */
+.question { min-width: 0; border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 4px; padding: 0.5rem 0.75rem 0.9rem; margin: 0 0 1.25rem; }
 .question legend { font-family: "Segoe UI", Arial, sans-serif; font-weight: bold; color: var(--navy); padding: 0 0.5rem; }
-.question-type { margin-left: 0.75rem; font-size: 0.85rem; font-weight: normal; color: var(--muted); }
+.question-type { display: block; font-size: 0.85rem; font-weight: normal; color: var(--muted); }
 .question-text { margin: 0.25rem 0 0.75rem; }
 
-/* Answer choices (radio buttons and checkboxes) */
-.option { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0.75rem; margin: 0.25rem 0; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; font-family: "Segoe UI", Arial, sans-serif; font-size: 1rem; line-height: 1.4; }
+/* Answer choices: the whole row is the tap target (at least 48px tall) */
+.option { display: flex; align-items: center; gap: 0.75rem; min-height: 3rem; box-sizing: border-box; padding: 0.5rem 0.75rem; margin: 0.4rem 0; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; font-family: "Segoe UI", Arial, sans-serif; font-size: 1rem; line-height: 1.4; }
 .option:hover { background-color: var(--soft-bg); border-color: var(--blue); }
-.option input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--blue); }
+.option input { flex: none; width: 1.4rem; height: 1.4rem; margin: 0; accent-color: var(--blue); }
 
-/* Text box for fill-in-the-blank questions */
+/* Text box for fill-in-the-blank questions. 16px+ text stops iPhones from zooming in */
 .blank-label { display: block; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.25rem; }
-.blank-input { width: 100%; max-width: 20rem; box-sizing: border-box; padding: 0.5rem 0.75rem; font-size: 1rem; border: 2px solid var(--line); border-radius: 4px; }
+.blank-input { width: 100%; box-sizing: border-box; min-height: 3rem; padding: 0.5rem 0.75rem; font-size: 1rem; border: 2px solid var(--line); border-radius: 4px; }
 .blank-input:focus { outline: none; border-color: var(--blue); }
 
-.form-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+.form-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
 
 /* Results panel */
-.results { border: 2px solid var(--line); border-radius: 4px; padding: 0.5rem 1.5rem 1.5rem; margin: 1.5rem 0; }
+.results { border: 2px solid var(--line); border-radius: 4px; padding: 0.25rem 1rem 1.25rem; margin: 1.25rem 0; }
 .results:focus { outline: none; }
 .results h2 { margin-top: 1rem; }
 .result-banner { display: inline-block; margin: 0.5rem 0; padding: 0.4rem 1.5rem; border-radius: 4px; font-family: "Segoe UI", Arial, sans-serif; font-size: 1.6rem; font-weight: bold; letter-spacing: 0.05em; }
 .result-banner.pass { background-color: var(--green-bg); color: var(--green); border: 2px solid var(--green); }
 .result-banner.fail { background-color: var(--red-bg); color: var(--red); border: 2px solid var(--red); }
 
-/* Score and time shown side by side */
-.result-stats { display: flex; flex-wrap: wrap; gap: 1rem 3rem; margin: 0.5rem 0 1rem; font-family: "Segoe UI", Arial, sans-serif; }
+/* Score and time: stacked on phones, side by side when there is room */
+.result-stats { display: flex; flex-wrap: wrap; gap: 0.75rem 3rem; margin: 0.5rem 0 1rem; font-family: "Segoe UI", Arial, sans-serif; }
 .result-stats dt { font-size: 0.85rem; color: var(--muted); }
-.result-stats dd { margin: 0; font-size: 1.5rem; font-weight: bold; color: var(--navy); }
+.result-stats dd { margin: 0; font-size: 1.4rem; font-weight: bold; color: var(--navy); }
 
 .score-bar { height: 0.9rem; background-color: var(--page-bg); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
 .score-fill { height: 100%; }
@@ -201,4 +253,64 @@ pre code { background: none; padding: 0; }
 .is-incorrect .feedback strong { color: var(--red); }
 
 /* ----- 7. Footer ----- */
-footer { text-align: center; padding: 1.5rem 1rem 2.5rem; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.9rem; color: #444; }
+footer { text-align: center; padding: 1.25rem 1rem 2rem; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.9rem; color: #444; }
+
+/* ==========================================================
+   8. TABLETS: screens 600px wide and up
+   More room, so spacing grows, the page becomes a centered
+   "paper" panel, and buttons shrink back to their natural size.
+   ========================================================== */
+@media (min-width: 600px) {
+  body { font-size: 1.125rem; }
+
+  header { padding: 1rem 2rem 0; }
+  .site-title { font-size: 1.1rem; }
+  #main-nav { margin: 0 -2rem; }
+  #main-nav a { padding: 0.5rem 2rem; }
+
+  main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--line);
+  }
+
+  .card-grid { gap: 1.25rem; }
+  .card { padding: 1rem 1.25rem; }
+
+  table { font-size: 0.95rem; }
+  th, td { padding: 0.6rem 0.8rem; }
+  pre { font-size: 0.85rem; }
+
+  .btn { display: inline-block; width: auto; }
+  .form-actions { flex-direction: row; }
+
+  .quiz-panel { padding: 0.5rem 1.5rem 1.5rem; }
+  .question { padding: 0.75rem 1.25rem 1rem; }
+  .question-type { display: inline; margin-left: 0.75rem; }
+  .blank-input { max-width: 20rem; }
+  .results { padding: 0.5rem 1.5rem 1.5rem; }
+  .timer-bar { padding: 0.5rem 1rem; }
+  .time-left { font-size: 1.5rem; }
+}
+
+/* ==========================================================
+   9. DESKTOPS: screens 960px wide and up
+   The menu becomes one horizontal row and the Menu button goes away.
+   ========================================================== */
+@media (min-width: 960px) {
+  .nav-toggle, .js .nav-toggle { display: none; }
+
+  /* flexbox again, now as a row that wraps if a window is squeezed */
+  #main-nav { flex-direction: row; flex-wrap: wrap; gap: 0; margin: 0; }
+  .js #main-nav:not(.is-open) { display: flex; }
+
+  #main-nav a { padding: 0.6rem 0.6rem; font-size: 0.95rem; border-top: none; border-left: none; border-bottom: 4px solid transparent; }
+  #main-nav a:hover { border-bottom-color: var(--accent); }
+  #main-nav a.current { border-bottom-color: var(--accent); background-color: transparent; }
+  #main-nav a:focus-visible { outline-offset: -3px; }
+
+  .site-title { font-size: 1.1rem; }
+  .table-wrap.scrolls::before { content: none; }   /* no swipe hint needed with a mouse */
+  .table-wrap.scrolls table { min-width: 0; }
+}

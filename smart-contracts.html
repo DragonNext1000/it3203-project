@@ -6,16 +6,25 @@
   <title>Smart Contracts | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html" class="current">Smart Contracts</a>
       <a href="layer1.html">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html">Key Concepts</a>
       <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
@@ -29,7 +38,7 @@
     node runs the same code, and the result is recorded in shared state. Because nobody controls the machine
     that runs it, the rules cannot be quietly changed or skipped.</p>
 
-    <img src="images/contract-flow.svg" alt="Three step flow: a user sends a transaction, nodes run the contract code, and the shared state updates">
+    <img src="images/contract-flow.svg" width="640" height="200" alt="Three step flow: a user sends a transaction, nodes run the contract code, and the shared state updates">
 
     <h2>How a Smart Contract Works</h2>
     <ol>
@@ -48,8 +57,19 @@
       <li>Voting and organization governance (DAOs)</li>
     </ul>
 
+    <h2>The EVM</h2>
+    <p>The Ethereum Virtual Machine (EVM) is the program every Ethereum node runs to execute contract bytecode. Each
+    step, called an opcode, has a gas cost, which stops endless loops. Many other chains and Layer 2 networks copy the
+    EVM, so the same Solidity code can often run on them with little change.</p>
+
+    <h2>Smart Contract Accounts and EIP-7702</h2>
+    <p>Ordinary wallets are controlled by one private key. Since the Pectra upgrade (May 2025), EIP-7702 lets a normal
+    wallet temporarily act like a smart contract. This makes features such as batching several actions in one
+    transaction possible. It is also a new thing to be careful with, since a bad approval can give a contract control.</p>
+
     <h2>Strengths and Limits</h2>
-    <table>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
       <caption>Tradeoffs of smart contracts</caption>
       <thead><tr><th>Strength</th><th>Limit</th></tr></thead>
       <tbody>
@@ -58,6 +78,7 @@
         <tr><td>Same behavior for every user</td><td>Contracts cannot read outside data without an oracle</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Security: Common Problems</h2>
     <p>Contract code often controls real money and cannot be quietly patched, so mistakes can be expensive.

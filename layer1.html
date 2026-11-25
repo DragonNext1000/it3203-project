@@ -6,16 +6,25 @@
   <title>Layer 1 | Smart Contracts, Layer 1 and Layer 2</title>
   <!-- The one and only stylesheet for the site -->
   <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <!-- Header and main menu: identical on every page for consistency -->
   <header>
-    <p>Smart Contracts, Layer 1 and Layer 2</p>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
     <nav id="main-nav" aria-label="Main menu">
       <a href="index.html">Home</a>
       <a href="smart-contracts.html">Smart Contracts</a>
       <a href="layer1.html" class="current">Layer 1</a>
       <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="security.html">Security</a>
       <a href="concepts.html">Key Concepts</a>
       <a href="quiz.html">Quiz</a>
       <a href="references.html">References</a>
@@ -42,7 +51,8 @@
     it also raises the hardware needed to run a node, which can push the network toward fewer, larger operators.
     Different Layer 1 chains choose different balances.</p>
 
-    <table>
+    <div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
       <caption>Comparison of selected Layer 1 networks (general characteristics)</caption>
       <thead><tr><th>Network</th><th>Consensus</th><th>Smart contracts</th><th>Scaling approach</th></tr></thead>
       <tbody>
@@ -51,11 +61,13 @@
         <tr><td>Solana</td><td>Proof of stake with Proof of History</td><td>Yes (Rust programs)</td><td>Scale on Layer 1 with fast blocks and high hardware demands</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>How Layer 1 Networks Reach Consensus</h2>
     <p>Nodes must agree on which transactions are valid and in what order. The two best-known methods are
     proof of work and proof of stake.</p>
-    <table>
+    <div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
       <caption>Proof of work compared with proof of stake</caption>
       <thead><tr><th>Feature</th><th>Proof of work</th><th>Proof of stake</th></tr></thead>
       <tbody>
@@ -65,6 +77,21 @@
         <tr><td>Example</td><td>Bitcoin</td><td>Ethereum</td></tr>
       </tbody>
     </table>
+    </div>
+
+    <h2>Finality: When Is a Transaction Final?</h2>
+    <p>Finality means a transaction can no longer be reversed. On Ethereum, validators vote in groups, and a block
+    becomes final after two &ldquo;epochs&rdquo; (each epoch is 32 slots of 12 seconds), which is about 15 minutes.
+    Finality needs votes from at least two-thirds of the staked ETH. To undo a finalized block, an attacker would have
+    to burn at least one-third of all staked ETH. Researchers are studying &ldquo;single-slot finality,&rdquo; which
+    would confirm blocks much faster, but it is not live yet. See the <a href="roadmap.html">Roadmap</a>.</p>
+
+    <h2>Choosing Between Layer 1 Networks</h2>
+    <ul>
+      <li>Want the strongest security and decentralization? Ethereum and Bitcoin put this first.</li>
+      <li>Want cheap, fast transactions on one chain? Solana aims for this, but needs powerful hardware to run a node.</li>
+      <li>Want low fees and Ethereum security together? Use a Layer 2 built on Ethereum.</li>
+    </ul>
 
     <h2>Why Fees Rise</h2>
     <p>Block space is limited. When many people want to use a chain at once, they bid against each other with

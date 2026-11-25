@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap | Smart Contracts, Layer 1 and Layer 2</title>
+  <!-- The one and only stylesheet for the site -->
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#1f3a56">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- One JavaScript file for the whole site (menu button + quiz). "defer" runs it after the page loads -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Header and main menu: identical on every page for consistency -->
+  <header>
+    <div class="header-top">
+      <p class="site-title">Smart Contracts, Layer 1 and Layer 2</p>
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <a href="index.html">Home</a>
+      <a href="smart-contracts.html">Smart Contracts</a>
+      <a href="layer1.html">Layer 1</a>
+      <a href="layer2.html">Layer 2</a>
+      <a href="roadmap.html" class="current">Roadmap</a>
+      <a href="security.html">Security</a>
+      <a href="concepts.html">Key Concepts</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="references.html">References</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Ethereum&rsquo;s Scaling Roadmap</h1>
+    <p>Ethereum&rsquo;s developers have chosen a &ldquo;rollup-centric&rdquo; plan. Layer 2 networks do most of the
+    day-to-day work, and Layer 1 focuses on being a secure and neutral base that rollups can post data to. This page
+    explains the main upgrades so far and what is planned next.</p>
+    <p class="status-note">Status as of November 25, 2026. Upgrade dates and numbers come from public sources listed on the
+    References page, and plans can change.</p>
+
+    <img src="images/roadmap-timeline.svg" width="640" height="400" loading="lazy" alt="Timeline of Ethereum upgrades: Dencun in March 2024, Pectra in May 2025, Fusaka in December 2025, and Glamsterdam planned">
+
+    <h2>Upgrade Timeline</h2>
+<div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
+      <caption>Recent and planned Ethereum upgrades (approximate dates)</caption>
+      <thead><tr><th>Upgrade</th><th>When</th><th>Main idea for scaling</th></tr></thead>
+      <tbody>
+        <tr><td>Dencun</td><td>March 2024</td><td>Added blobs (EIP-4844), a cheaper place for rollups to post data</td></tr>
+        <tr><td>Pectra</td><td>May 2025</td><td>Raised blob capacity and added account features such as EIP-7702</td></tr>
+        <tr><td>Fusaka</td><td>December 2025</td><td>Added PeerDAS so nodes can check blob data without downloading all of it</td></tr>
+        <tr><td>Glamsterdam</td><td>Planned (not yet live)</td><td>Faster block handling and fee changes; reports say it may slip into 2027</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Blobs and PeerDAS</h2>
+    <p>A blob is a large chunk of temporary data that rollups attach to Ethereum blocks. Blobs cost far less than
+    normal transaction data, so rollup fees dropped after Dencun. The problem is that every node used to download
+    every blob. PeerDAS (&ldquo;data availability sampling&rdquo;) in Fusaka lets each node download only small pieces
+    and still be confident that the whole blob was published. That makes it safer to allow more blobs per block.</p>
+<div class="table-wrap scrolls" tabindex="0" role="region" aria-label="Scrollable table">
+<table>
+      <caption>Blob capacity per block (target / maximum)</caption>
+      <thead><tr><th>Upgrade</th><th>Target</th><th>Maximum</th></tr></thead>
+      <tbody>
+        <tr><td>Dencun</td><td>3</td><td>6</td></tr>
+        <tr><td>Pectra</td><td>6</td><td>9</td></tr>
+        <tr><td>Fusaka and later</td><td colspan="2">Raised again in small steps after PeerDAS; check ethereum.org for the current values</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>What Is Planned Next</h2>
+    <p>Glamsterdam is the next large upgrade. The goals discussed publicly include changes to how blocks are built
+    (called ePBS), a way to process transactions in parallel (block-level access lists), and re-pricing some operations
+    so the network can safely handle more work. Some news sources report that the launch date has moved later, so treat any
+    date as a target, not a promise.</p>
+    <p>The Ethereum Foundation&rsquo;s 2026 priorities put it in three words: <strong>Scale</strong> the network,
+    <strong>Improve UX</strong> (make it easier to use), and <strong>Harden the L1</strong> (make the base layer stronger).
+    A longer-term research goal is <em>single-slot finality</em>, which would confirm blocks in one step instead of
+    the roughly 15 minutes it takes today.</p>
+
+    <h2>What This Means for Layer 1 and Layer 2</h2>
+    <ul>
+      <li><strong>Layer 1</strong> is becoming the settlement and data layer. It does not try to be the cheapest place to run apps.</li>
+      <li><strong>Layer 2</strong> gets cheaper as blob capacity grows, so fees should stay low even when demand rises.</li>
+      <li>The tradeoff is that users must pick between many Layer 2 networks and trust each one&rsquo;s own setup. See <a href="security.html">Security and Risks</a>.</li>
+    </ul>
+    <p class="note">Related pages: <a href="layer1.html">Layer 1</a>, <a href="layer2.html">Layer 2</a>, <a href="references.html">References</a>.</p>
+
+  </main>
+
+  <!-- Footer: class project note with link to the class website -->
+  <footer>
+    <p>This website is a class project for IT 3203 Introduction to Web Development at Kennesaw State University.
+    Visit the <a href="https://ksuweb.github.io/IT3203/">IT 3203 class website</a>.</p>
+  </footer>
+</body>
+</html>
